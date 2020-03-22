@@ -23,7 +23,8 @@ module.exports = {
   ** Global CSS
   */
   css: [
-    'ant-design-vue/dist/antd.css'
+    'ant-design-vue/dist/antd.css',
+    '@/styles/reset.css'
   ],
   /*
   ** Plugins to load before mounting the App
@@ -44,7 +45,11 @@ module.exports = {
     // Doc: https://axios.nuxtjs.org/usage
     '@nuxtjs/axios',
     '@nuxtjs/pwa',
+    '@nuxtjs/style-resources'
   ],
+  styleResources: {
+    less: ['@/styles/index.less', '@/styles/variables.less'],
+  },
   /*
   ** Axios module configuration
   ** See https://axios.nuxtjs.org/options
