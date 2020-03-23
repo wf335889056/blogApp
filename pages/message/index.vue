@@ -4,6 +4,7 @@
     <div class="main fl">
       <h2>留言</h2>
       <IssueForm :loading="loading" @submitEmit="onSubmitEmit" />
+      <Comments :isLike="false" :count="10" @replyEmit="onReplyEmit" />
     </div>
     <div class="clear"></div>
   </div>
@@ -13,10 +14,11 @@
 import Vue from 'vue'
 import LeftBlock from '../../components/leftBlock.vue'
 import IssueForm from '../../components/issueForm.vue'
+import Comments from '../../components/comments.vue'
 
 export default Vue.extend({
   layout: 'blog',
-  components: { LeftBlock, IssueForm },
+  components: { LeftBlock, IssueForm, Comments },
   data() {
     return {
       loading: false

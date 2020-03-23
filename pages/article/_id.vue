@@ -25,7 +25,7 @@
         <h2>文章评论</h2>
         <IssueForm :loading="loading" @submitEmit="onSubmitEmit" />
       </div>
-      <Comments />
+      <Comments :isLike="false" :count="10" @replyEmit="onReplyEmit" />
     </div>
     <div class="clear"></div>
   </div>
@@ -57,6 +57,9 @@ export default Vue.extend({
       console.log(val)
       this.loading = true
       setTimeout(() => this.loading = false, 1000)
+    },
+    onReplyEmit(val: string) {
+      console.log(val)
     },
     handleLike() {
       this.isLike = true
@@ -106,34 +109,34 @@ export default Vue.extend({
           padding-right: 8px;
         }
       }
-    }
-    .content {
-      margin-bottom: 20px;
-      p {
-        margin-bottom: 15px;
-        color: #555;
-        font-size: @default_fontSize;
+      .content {
+        margin-bottom: 20px;
+        p {
+          margin-bottom: 15px;
+          color: #555;
+          font-size: @default_fontSize;
+        }
       }
-    }
-    .like {
-      padding: 20px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      .icons {
-        width: 160px;
-        height: 40px;
-        margin: auto;
-        background: #E2523A;
-        color: #fff;
-        box-shadow: 1px 2px 6px 0px rgba(0,0,0,.2);
-        border-radius: 3px;
-        display: inline-flex;
+      .like {
+        padding: 20px;
+        display: flex;
         justify-content: center;
         align-items: center;
-        cursor: pointer;
-        p {
-          margin-left: 10px;
+        .icons {
+          width: 160px;
+          height: 40px;
+          margin: auto;
+          background: #E2523A;
+          color: #fff;
+          box-shadow: 1px 2px 6px 0px rgba(0,0,0,.2);
+          border-radius: 3px;
+          display: inline-flex;
+          justify-content: center;
+          align-items: center;
+          cursor: pointer;
+          p {
+            margin-left: 10px;
+          }
         }
       }
     }

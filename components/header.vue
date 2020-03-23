@@ -1,7 +1,7 @@
 <template>
   <header class="top-bar">
     <div class="container">
-      <div class="logo transition">个人博客</div>
+      <div class="logo transition">修仙宝典</div>
       <div class="nav">
         <div class="menus">
           <nuxt-link v-for="(item, index) in navs" 
@@ -13,21 +13,28 @@
           </nuxt-link>
         </div>
         <div class="user">
-          <a-button type="primary" size="small">登陆</a-button>
-          <a-button type="danger" size="small">注册</a-button>
+          <a-button type="primary" size="small" @click="handleShowLogin">登陆</a-button>
+          <a-button type="danger" size="small" @click="handleShowRegister">注册</a-button>
         </div>
       </div>
     </div>
+    <Login :visible="showLogin" @loginModalEmit="onLoginModalEmit" />
+    <Register />
   </header>
 </template>
 
 <script lang="ts">
 import Vue from 'vue'
+import Login from './login.vue'
+import Register from './register.vue'
 import utils from '../utils/index'
 export default Vue.extend({
+  components: { Login, Register },
   data() {
     return {
-      navs: utils.navs
+      navs: utils.navs(),
+      showLogin: true,
+      showRegister: false
     }
   },
   mounted() {
@@ -43,6 +50,17 @@ export default Vue.extend({
         if (this.navs[i].href.includes(href) && i !== 0) index = i
       }
       return index
+    }
+  },
+  methods: {
+    onLoginModalEmit(flag: Boolean) {
+      this.showLogin = false
+    },
+    handleShowLogin() {
+      this.showLogin = true
+    },
+    handleShowRegister() {
+      this.showRegister = true
     }
   }
 })

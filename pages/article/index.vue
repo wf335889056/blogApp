@@ -10,7 +10,8 @@
           </div>
           <div class="image"><img class="transition" src="../../assets/37b2762ee25cd73e39019c57eb6c6135.jpg" /></div>
         </nuxt-link>
-      </div> 
+      </div>
+      <NoData v-show="list.length == 0" />
     </div>  
     <div class="clear"></div>
   </div>
@@ -19,13 +20,14 @@
 <script lang="ts">
 import Vue from 'vue'
 import LeftBlock from '../../components/leftBlock.vue'
+import NoData from '../../components/noData.vue'
 
 export default Vue.extend({
   layout: 'blog',
-  components: { LeftBlock },
+  components: { LeftBlock, NoData },
   data() {
     return {
-      list: [1,2,3,4,5,6]
+      list: []
     }
   },
   mounted() {

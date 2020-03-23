@@ -24,7 +24,13 @@ export function getBase64Image(img: HTMLImageElement): string {
   return dataURL;
 }  
 
+export function emailReg(str: string): boolean {
+  let reg: RegExp = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/
+  return reg.test(str)
+}
+
 export default {
-  navs: createNav(),
-  getBase64Image
+  navs: createNav,
+  getBase64Image,
+  emailReg
 }
