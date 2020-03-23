@@ -1,5 +1,11 @@
+body {
+  background-color: @background_color;
+}
 a:hover {
-  color: #000 !important;
+  color: @hover_color !important;
+}
+a.active:hover {
+  color: @primary_color !important;
 }
 .full-container {
   width: 100%;
@@ -13,4 +19,30 @@ a:hover {
   -moz-transition:all .3s;
   -webkit-transition:all .3s;
   -o-transition:all .3s;
+}
+.pdTop20 {
+  padding-top: @paddingTop_20;
+}
+.w300 {
+  width: 300px;
+}
+.textOverflow {
+	overflow: hidden;
+	text-overflow:ellipsis;
+	white-space: nowrap;
+}
+.text2Overflow{
+	display: -webkit-box;
+	-webkit-box-orient: vertical;
+	-webkit-line-clamp: 2;
+	overflow: hidden;
+}
+.fl {
+	float: left;
+}
+.fr {
+	float: right;
+}
+.clearboth {
+	clear: both;
 }

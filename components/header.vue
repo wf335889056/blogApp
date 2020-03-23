@@ -4,9 +4,10 @@
       <div class="logo transition">个人博客</div>
       <div class="nav">
         <div class="menus">
-          <nuxt-link v-for="(item, index) in menus" 
+          <nuxt-link v-for="(item, index) in navs" 
             :key="`${item.title}-${index}`"
-            :to="item.href" :class="item.isActive? 'active link' : 'link'"
+            :to="item.href" 
+            :class="currIndex == index? 'active link' : 'link'"
           >
             {{item.title}}
           </nuxt-link>
@@ -22,11 +23,26 @@
 
 <script lang="ts">
 import Vue from 'vue'
-import { menus } from '../utils'
+import utils from '../utils/index'
 export default Vue.extend({
   data() {
     return {
-      menus
+      navs: utils.navs
+    }
+  },
+  mounted() {
+    console.log(this.$route)
+    console.log(this.$router)
+  },
+  computed: {
+    currIndex(): number {
+      if (this.$route.path == '/') return 0
+      let href: string = this.$route.path.split('/')[1]
+      let index: number = 0
+      for (let i = 0; i < this.navs.length; i++) {
+        if (this.navs[i].href.includes(href) && i !== 0) index = i
+      }
+      return index
     }
   }
 })
@@ -64,7 +80,7 @@ export default Vue.extend({
       .menus {
         .link {
           padding-left: 30px;
-          font-size: @default_fontSzie;
+          font-size: @default_fontSize;
           color: @default_color;
           &.active {
             color: @primary_color;
