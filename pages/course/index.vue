@@ -2,7 +2,7 @@
   <div class="container">
     <LeftBlock @searchEmit="onSearchEmit" />
     <div class="course fl">
-      <a-timeline>
+      <a-timeline mode="alternate">
         <a-timeline-item>Create a services site 2015-09-01</a-timeline-item>
         <a-timeline-item>Solve initial network problems 2015-09-01</a-timeline-item>
         <a-timeline-item>Technical testing 2015-09-01</a-timeline-item>

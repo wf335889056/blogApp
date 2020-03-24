@@ -13,13 +13,13 @@
           </nuxt-link>
         </div>
         <div class="user">
-          <a-button type="primary" size="small" @click="handleShowLogin">登陆</a-button>
+          <a-button type="primary" size="small" @click="handleShowLogin">登录</a-button>
           <a-button type="danger" size="small" @click="handleShowRegister">注册</a-button>
         </div>
       </div>
     </div>
     <Login :visible="showLogin" @loginModalEmit="onLoginModalEmit" />
-    <Register />
+    <Register :visible="showRegister" @registerModalEmit="onRegisterModalEmit" />
   </header>
 </template>
 
@@ -33,7 +33,7 @@ export default Vue.extend({
   data() {
     return {
       navs: utils.navs(),
-      showLogin: true,
+      showLogin: false,
       showRegister: false
     }
   },
@@ -55,6 +55,9 @@ export default Vue.extend({
   methods: {
     onLoginModalEmit(flag: Boolean) {
       this.showLogin = false
+    },
+    onRegisterModalEmit(flag: Boolean) {
+      this.showRegister = false
     },
     handleShowLogin() {
       this.showLogin = true

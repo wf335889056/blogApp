@@ -13,7 +13,7 @@ export function createNav(): Nav[] {
   ]
 }
 
-export function getBase64Image(img: HTMLImageElement): string {
+export function canvasBase64Image(img: HTMLImageElement): string {
   let canvas: HTMLCanvasElement = document.createElement("canvas") 
   canvas.width = img.width 
   canvas.height = img.height 
@@ -24,6 +24,15 @@ export function getBase64Image(img: HTMLImageElement): string {
   return dataURL;
 }  
 
+export function fileBase64Image(file: any) {
+  return new Promise((resolve, reject) => {
+    let reader: FileReader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = () => resolve(reader.result);
+    reader.onerror = error => reject(error);
+  });
+}
+
 export function emailReg(str: string): boolean {
   let reg: RegExp = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/
   return reg.test(str)
@@ -31,6 +40,7 @@ export function emailReg(str: string): boolean {
 
 export default {
   navs: createNav,
-  getBase64Image,
-  emailReg
+  canvasBase64Image,
+  emailReg,
+  fileBase64Image
 }

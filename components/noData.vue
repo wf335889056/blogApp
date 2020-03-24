@@ -1,6 +1,6 @@
 <template>
   <div class="no-data">
-    <a-empty  description="没有数据啦..." />
+    <a-empty  description="没有数据啦. . ." />
   </div>
 </template>
 

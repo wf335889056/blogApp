@@ -1,12 +1,14 @@
 <template>
   <div>
     <a-modal
-      title="登陆"
+      title="登录"
       :visible="visible"
       @ok="handleOk"
       :confirmLoading="confirmLoading"
       @cancel="handleCancel"
       :maskClosable="false"
+      cancelText="取消"
+      okText="登录"
     >
     <a-form
       id="components-form-demo-normal-login"
@@ -44,7 +46,7 @@
 <script lang="ts">
 import Vue from 'vue'
 import { Form } from 'ant-design-vue'
-import { emailReg } from '../utils'
+import { emailReg } from '../utils/index'
 Vue.prototype.$form = Form
 
 export default Vue.extend({
@@ -57,7 +59,7 @@ export default Vue.extend({
   data() {
     return {
       confirmLoading: false,
-      form: this.$form.createForm(this, { name: 'normal_login' })
+      form: this.$form.createForm(this)
     }
   },
   mounted() {
@@ -67,17 +69,15 @@ export default Vue.extend({
     handleOk() {
       this.form.validateFields((err: any, values: any) => {
         if (!err && emailReg(values.email)) {
-          
+          this.$emit('loginModalEmit', true)
         } else {
           this.$message.error('邮箱格式不正确, 请重新输入')
         }
       })
-      // this.$emit('loginModalEmit', false)
     },
     handleCancel() {
       this.$emit('loginModalEmit', false)
     },
-    
   }
 })
 </script>

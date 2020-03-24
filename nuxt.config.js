@@ -18,19 +18,22 @@ module.exports = {
   /*
   ** Customize the progress-bar color
   */
-  loading: { color: '#fff' },
+  loading: { color: '#f65a8a' },
   /*
   ** Global CSS
   */
   css: [
     'ant-design-vue/dist/antd.css',
-    '@/styles/reset.css'
+    '@/styles/reset.css',
+    '@/styles/component.css',
+    '@/styles/demo.css'
   ],
   /*
   ** Plugins to load before mounting the App
   */
   plugins: [
-    '@/plugins/antd-ui'
+    '@/plugins/antd-ui',
+    '@/plugins/axios'
   ],
   /*
   ** Nuxt.js dev-modules
@@ -55,6 +58,13 @@ module.exports = {
   ** See https://axios.nuxtjs.org/options
   */
   axios: {
+    debug: true,
+    proxy: true,
+    credentials: true
+  },
+  proxy: {
+    '/api/': 'http://api.example.com',
+    '/api2/': 'http://api.another-website.com'
   },
   /*
   ** Build configuration
