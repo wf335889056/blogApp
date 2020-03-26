@@ -12,11 +12,13 @@
       >{{item.title}}</nuxt-link>
       <a href="jvascript:void(0);" class="gv" @click="handleToggle">切换</a>
     </nav>
+		<div class="loading" v-show="homeLoading"><a-spin size="large" /></div>
   </div>
 </template>
 
 <script lang="ts">
 import Vue from 'vue'
+import { mapGetters, mapMutations } from 'vuex'
 import '../utils/TweenLite.min.js'
 import '../utils/EasePack.min.js'
 import DemoCanvas1 from '../components/demoCanvas1.vue'
@@ -43,9 +45,14 @@ export default Vue.extend({
     }
 	},
 	mounted() {
-		console.log(this)
+		console.log(this.$store)
+		this.$nextTick(() => this.SET_HOMELOADING())
+	},
+	computed: {
+		...mapGetters(['homeLoading'])
 	},
   methods: {
+		...mapMutations(['SET_HOMELOADING']),
     handleToggle() {
       this.toggleShow = this.toggleShow == 1? 2 : 1
     }
@@ -55,7 +62,11 @@ export default Vue.extend({
 
 <style lang="less" scoped>
   .full-container {
-    position: relative;
+		position: fixed;
+		top: 0;
+		left: 0;
+		bottom: 0;
+		right: 0;
   }
   .full-container .nav{
 	  width:670px;
